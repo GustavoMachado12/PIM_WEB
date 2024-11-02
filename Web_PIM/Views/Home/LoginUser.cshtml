@@ -1,0 +1,33 @@
+﻿@model Fbarbosa.Models.mLogin
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>FBarbosa - Login!</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/loginUser.css" />
+    <link rel="stylesheet" href="~/Fbarbosa.styles.css" asp-append-version="true" />
+    </head>
+    <body>
+        <div class="login-container">
+                <div class="login-box">
+                    @using (Html.BeginForm("LoginUser", "Home", FormMethod.Post))
+                    {
+                        <h1>Logar-se!</h1>
+                        <label for="usuario">Usuário</label>
+                        @Html.EditorFor(x => x.login, new { htmlAttributes = new { type = "text", id = "usuario", name = "usuario", placeholder = "Username", title = "Digite seu usuário"} })
+                <!-- <input type="text" placeholder="Username" title="Digite seu usário" id="usuario" name="usuario" /> -->
+                        <label for="senha">Senha</label>
+                @Html.EditorFor(x => x.senha, new { htmlAttributes = new { type = "password", placeholder = "Password", title = "Digite sua senha", id = "senha", name = "senha" } })
+                        <!-- <input type="password" placeholder="Password" title="Digite sua senha" id="senha" name="senha" /> -->
+                        <button id="btnLogin" value="Entrar" type="submit">Login</button>
+                   }
+                </div>
+        </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    </body>
+</html>
