@@ -1,33 +1,80 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Página Inicial";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+<head>
+    <link href="~/CSS/homeCliente.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+</head>
+
+<section class="home" id="home">
+
+    <div class="content">
+        <h3>
+            
+        </h3>
     </div>
-</main>
+
+</section>
+
+<section class="products" id="products">
+    <h1 class="heading">Nossos <span>Produtos</span></h1>
+    <div class="swiper product-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide box">
+                <img src="~/Imagens/cebolaRoxa.png" alt="Cebola Roxa">
+                <h3>Cebola Roxa</h3>
+                <div class="price">R$2.99</div>
+                <a href="#" class="btn">Carrinho</a>
+            </div>
+            <div class="swiper-slide box">
+                <img src="~/Imagens/alfaceRoxo.png" alt="Alface Roxa">
+                <h3>Alface Roxa</h3>
+                <div class="price">R$2.99</div>
+                <a href="#" class="btn">Carrinho</a>
+            </div>
+            <div class="swiper-slide box">
+                <img src="~/Imagens/repolhoRoxo.png" alt="Repolho Roxo">
+                <h3>Repolho Roxo</h3>
+                <div class="price">R$2.99</div>
+                <a href="#" class="btn">Carrinho</a>
+            </div>
+            <div class="swiper-slide box">
+                <img src="~/Imagens/repolhoRoxo.png" alt="Repolho Roxo">
+                <h3>Repolho Roxo</h3>
+                <div class="price">R$2.99</div>
+                <a href="#" class="btn">Carrinho</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper(".product-slider", {
+        loop: true,
+        spaceBetween: 20,
+        autoplay: {
+            delay: 7500,
+            disableOnInteraction: false,
+        },
+        centeredSlides: true,
+        breakpoints: {
+            0: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: 2,
+            },
+            1020: {
+                slidesPerView: 3,
+            },
+        },
+    });
+</script>

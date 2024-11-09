@@ -1,8 +1,8 @@
-﻿namespace Fbarbosa.Models
+﻿namespace Web_PIM.Models
 {
     public class mFuncionario
     {
-        int id;
+        int id { get; set; }
 
         string nmFuncionario { get; set; }
         string loginFuncionario { get; set; }

@@ -1,9 +1,10 @@
-﻿using Fbarbosa.Models;
+﻿using Web_PIM.Models;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 
-namespace Fbarbosa.Acoes
+namespace Web_PIM.Acoes
 {
     public class acaoCliente
     {

@@ -1,7 +1,8 @@
 ﻿using Microsoft.VisualBasic;
+using System;
 using System.Data.SqlClient;
 
-namespace Fbarbosa.Acoes
+namespace Web_PIM.Acoes
 {
     public class conexao
     {

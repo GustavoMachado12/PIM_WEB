@@ -1,4 +1,4 @@
-﻿namespace Fbarbosa.Models
+﻿namespace Web_PIM.Models
 {
     public class mLogin
     {

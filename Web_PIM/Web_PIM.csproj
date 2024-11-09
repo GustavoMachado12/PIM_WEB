@@ -128,8 +128,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\mCliente.cs" />
+    <Compile Include="Models\mClienteLogin.cs" />
     <Compile Include="Models\mFuncionario.cs" />
     <Compile Include="Models\mLogin.cs" />
+    <Compile Include="Models\mProduto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -149,9 +151,17 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="CSS\styleRegister.css" />
+    <Content Include="CSS\styleHome.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagens\alfaceRoxo.png" />
+    <Content Include="Imagens\bgHorta.png" />
+    <Content Include="Imagens\bgRegister.jpg" />
+    <Content Include="Imagens\cebolaRoxa.png" />
+    <Content Include="Imagens\logo.png" />
+    <Content Include="Imagens\repolhoRoxo.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -183,8 +193,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\LoginUser.cshtml" />
-    <Content Include="Views\Home\RegisterUser.cshtml" />
+    <Content Include="Views\Home\Cadastra.cshtml" />
+    <Content Include="Views\Cliente\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
