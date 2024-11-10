@@ -18,5 +18,7 @@ namespace Web_PIM.Models
         public int quantidade { get; set; } 
 
         public string status { get; set;}
+
+        public string fotoProduto { get; set; }
     }
 }

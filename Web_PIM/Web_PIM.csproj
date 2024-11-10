@@ -119,6 +119,7 @@
   <ItemGroup>
     <Compile Include="Acao\acaoCliente.cs" />
     <Compile Include="Acao\acaoLogin.cs" />
+    <Compile Include="Acao\acaoProduto.cs" />
     <Compile Include="Acao\conexao.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -151,6 +152,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="CSS\ListaProdutos.css" />
     <Content Include="CSS\styleRegister.css" />
     <Content Include="CSS\styleHome.css" />
     <Content Include="favicon.ico" />
@@ -195,6 +197,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Cadastra.cshtml" />
     <Content Include="Views\Cliente\Home.cshtml" />
+    <Content Include="Views\Home\_ListaProduto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Web_PIM.Models.mProduto>
+
+
+
+@{
+    ViewBag.Title = "_ListaProduto";
+    Layout = null;
+}
+
+<link rel="stylesheet" href="~/CSS/ListaProdutos.css" />
+
+<div class="swiper-slide box">
+    @foreach (var item in Model)
+    {
+        <img src="../image/cebolaRoxa.png" alt="Cebola Roxa">
+        <h3>@item.nomeProduto</h3>
+        <div class="price">R$@item.valor</div>
+        <a href="#" class="btn">Carrinho</a>
+    }
+
+</div>
