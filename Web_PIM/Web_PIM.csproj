@@ -124,6 +124,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -153,6 +154,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="CSS\ListaProdutos.css" />
+    <Content Include="CSS\styleAdmin.css" />
     <Content Include="CSS\styleRegister.css" />
     <Content Include="CSS\styleHome.css" />
     <Content Include="favicon.ico" />
@@ -198,6 +200,8 @@
     <Content Include="Views\Home\Cadastra.cshtml" />
     <Content Include="Views\Cliente\Home.cshtml" />
     <Content Include="Views\Home\_ListaProduto.cshtml" />
+    <Content Include="Views\Administrador\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

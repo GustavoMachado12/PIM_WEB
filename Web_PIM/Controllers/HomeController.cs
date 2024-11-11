@@ -40,12 +40,12 @@ namespace Web_PIM.Controllers
             if (cmLogin.nvlAcesso == "Administrador")
             {
                 Session["Administrador"] = cmLogin;
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Administrador");
             }
             else if (cmLogin.nvlAcesso == "Funcionario")
             {
                 Session["Funcionario"] = cmLogin;
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Administrador");
             }
             else if (cmLogin.nvlAcesso == "Cliente")
             {

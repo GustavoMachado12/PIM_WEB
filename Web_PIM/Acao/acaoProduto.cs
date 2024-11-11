@@ -31,8 +31,8 @@ namespace Web_PIM.Acao
                         {
                             id = Convert.ToUInt16(dr["Codigo"]),
                             nomeProduto = Convert.ToString(dr["Nome"]),
-                            valor = Convert.ToString(dr["Categoria"]),
-                            categoria = Convert.ToString(dr["Valor"]),
+                            categoria = Convert.ToString(dr["Categoria"]),
+                            valor = Convert.ToString(dr["Valor"]),
                             quantidade = Convert.ToUInt16(dr["Quantidade"]),
                             fotoProduto = Convert.ToString(dr["Foto"])
                         }) ;
