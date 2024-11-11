@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Collections.Generic;
 
 namespace Web_PIM.Acoes
 {
@@ -10,6 +11,50 @@ namespace Web_PIM.Acoes
     {
         conexao con = new conexao();
 
+
+        //CONSULTA CLIENTE FISICO 
+        public List<mCliente> consultaClienteF()
+        {
+            List<mCliente> ClienteLista = new List<mCliente>();
+
+            SqlCommand cmd = new SqlCommand("EXEC pSelectClienteF_Descripto", con.OpenConnection());
+            SqlDataAdapter sd = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sd.Fill(dt);
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                ClienteLista.Add(
+                        new mCliente
+                        {
+                            id = Convert.ToInt32(dr["Codigo"]),
+                            nome = Convert.ToString(dr["Nome"]),
+                            email = Convert.ToString(dr["E-mail"]),
+                            endereco = Convert.ToString(dr["Endereco"]),
+                            telefone = Convert.ToString(dr["Telefone"]),
+                            documento = Convert.ToString(dr["CPF"])
+                        });
+            }
+            con.CloseConnection();
+
+            return ClienteLista;
+        }
+
+        //DELETA CLIENTE FISICO
+        public bool deletaClienteF(int id)
+        {
+            SqlCommand cmd = new SqlCommand("pExcluiCliente @CodCliente", con.OpenConnection());
+            cmd.Parameters.AddWithValue("@CodCliente", id);
+
+            int i = cmd.ExecuteNonQuery();
+            con.CloseConnection();
+
+            if (i >= 1)
+                return true;
+                
+            else
+                return false;
+        }
 
         //CADASTRA CLIENTE FISICO
         public void cadastraClienteF(mCliente cmCliente)
@@ -110,7 +155,7 @@ namespace Web_PIM.Acoes
             con.CloseConnection();
         }
 
-
+        //PEGA ULTIMO CADASTRO DO LOGIN
         public void pegaUltimoCadastro(mCliente cmCliente)
         {
             SqlCommand cmd = new SqlCommand(

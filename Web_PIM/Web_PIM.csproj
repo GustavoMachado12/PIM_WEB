@@ -155,8 +155,11 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="CSS\ListaProdutos.css" />
     <Content Include="CSS\styleAdmin.css" />
+    <Content Include="CSS\styleCrudAdm.css" />
+    <Content Include="CSS\styleFormsAdm.css" />
     <Content Include="CSS\styleRegister.css" />
     <Content Include="CSS\styleHome.css" />
+    <Content Include="CSS\styleTabela.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -202,6 +205,7 @@
     <Content Include="Views\Home\_ListaProduto.cshtml" />
     <Content Include="Views\Administrador\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAdm.cshtml" />
+    <Content Include="Views\Administrador\ConsultaClienteF.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

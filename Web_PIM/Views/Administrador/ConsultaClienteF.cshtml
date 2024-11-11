@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Web_PIM.Models.mCliente>
+
+@{
+    ViewBag.Title = "Cliente Fisico";
+    Layout = "~/Views/Shared/_LayoutAdm.cshtml";
+}
+
+<link rel="stylesheet" href="~/CSS/styleTabela.css" type="text/css" />
+
+
+<h2>Cliente Físico</h2>
+
+
+<center>
+
+    <a class="button" href="#Cadastra">
+        <span class="button-text">
+            Cadastrar
+        </span>
+        <span class="button-icon">
+            <i class="fa-solid fa-plus"></i>
+        </span>
+    </a>
+
+    <table class="content-table">
+
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(x => x.id)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(x => x.nome)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(x => x.email)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(x => x.endereco)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(x => x.telefone)
+                </th>
+
+                <th>
+                    @Html.DisplayName("CPF")
+                </th>
+
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr class="active-row">
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nome)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.endereco)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.telefone)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.documento)
+                    </td>
+
+                    <td></td>
+
+                    <td>
+                        <a class="fa-solid fa-pen" href="@Url.Action("editaCliF", "Administrador", new { id = item.id })" style="color: #0047AB"></a>
+                    </td>
+
+                    <td>
+                        <a class="fa-solid fa-trash" href="@Url.Action("excluiClienteF", "Administrador", new { id = item.id })" style="color: #A52A2A" onclick="return confirm('Deseja realmente deletar?');"></a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+</center>
+
+
+
