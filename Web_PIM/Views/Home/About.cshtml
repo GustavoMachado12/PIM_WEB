@@ -1,9 +1,57 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/CSS/styleAbout.css" />
+</head>
 
-    <p>Use this area to provide additional information.</p>
-</main>
+<body>
+
+    <div class="slider">
+
+        <div class="slides">
+
+            <!-- Botões -->
+            <input type="radio" name="radio-btn" id="radio1" />
+            <input type="radio" name="radio-btn" id="radio2" />
+            <input type="radio" name="radio-btn" id="radio3" />
+            <input type="radio" name="radio-btn" id="radio4" />
+
+            <!-- Imagens -->
+            <div class="slide primeiro">
+                <img src="" alt="a1" />
+            </div>
+            <div class="slide segundo">
+                <img src="" alt="a2" />
+            </div>
+            <div class="slide terceiro">
+                <img src="" alt="a3" />
+            </div>
+            <div class="slide quarto">
+                <img src="" alt="a4" />
+            </div>
+
+            <!-- Bolinhas de Navegação -->
+            <div class="navigation-auto">
+                <div class="botao-1"></div>
+                <div class="botao-2"></div>
+                <div class="botao-3"></div>
+                <div class="botao-4"></div>
+            </div>
+
+
+        </div>
+
+        <div class="manual-navigation">
+            <label for="radio1" class="manual-btn"></label>
+            <label for="radio2" class="manual-btn"></label>
+            <label for="radio3" class="manual-btn"></label>
+            <label for="radio4" class="manual-btn"></label>
+        </div>
+
+    </div>
+
+    <script src="~/Scripts/carrossel.js"></script>
+</body>
