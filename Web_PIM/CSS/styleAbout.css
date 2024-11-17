@@ -1,0 +1,30 @@
+.containerPrincipal {
+    position: relative;
+    width: 115%;
+    margin: 100px -100px 0px;
+}
+
+.texto {
+
+}
+
+.slider {
+    margin: 0px auto;
+    filter: drop-shadow(0px 0px 5px #000);
+    overflow: hidden;
+    height: 400px;
+    width: 800px;
+    background-color: #000;
+}
+
+.slides {
+    display: flex;
+    transition: 0.7s ease-in-out;
+    transform: translateX(0);
+}
+
+.slides img {
+    margin-top: 0px;
+    width: 800px;
+    height: 450px;
+}

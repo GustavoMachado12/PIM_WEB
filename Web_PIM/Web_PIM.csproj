@@ -161,6 +161,10 @@
     <Content Include="Imagens\bgHorta.png" />
     <Content Include="Imagens\bgRegister.jpg" />
     <Content Include="Imagens\cebolaRoxa.png" />
+    <Content Include="Imagens\Farm1.jpg" />
+    <Content Include="Imagens\Farm2.jpg" />
+    <Content Include="Imagens\Farm3.jpg" />
+    <Content Include="Imagens\Farm4.jpg" />
     <Content Include="Imagens\logo.png" />
     <Content Include="Imagens\repolhoRoxo.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
