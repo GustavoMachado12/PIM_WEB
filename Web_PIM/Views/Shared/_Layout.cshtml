@@ -17,9 +17,9 @@
         <a href="#" class="logo"> <i class="img"></i> Fazenda Barbosa </a>
 
         <nav class="navbar">
-            <a @Url.Action("Index", "Home")>Home</a>
+            <a href="@Url.Action("Index", "Home")">Home</a>
             <a href="#products">Produtos</a>
-            <a href="#login">Login</a>
+            <a href="@Url.Action("About", "Home")">Sobre Nós</a>
         </nav>
 
         <div class="icons">
@@ -116,6 +116,14 @@
             <div class="containerFooter">
 
                 <div class="webFooter">
+                    <h3>Fazendas Barbosa</h3>
+                    <ul>
+                        <li><a href="@Url.Action("Index", "Home")">Página Inicial</a></li>
+                        <li><a href="@Url.Action("About", "Home")">Sobre nós</a></li>
+                    </ul>
+                </div>
+
+                <div class="webFooter">
                     <h3>Usuário</h3>
                     <ul>
                         <li><a href="#">Login</a></li>
@@ -123,27 +131,32 @@
                         <li><a href="#">Carrinho</a></li>
                     </ul>
                 </div>
-                <div class="webFooter">
-                    <h3>Fazendas Barbosa</h3>
-                        <ul>
-                            <li><a href="#">Página Inicial</a></li>
-                            <li><a href="#">Sobre nós</a></li>
-                        </ul>
-                </div>
+
                 <div class="webFooter">
                     <h3>Contatos</h3>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>                       
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
+
+                <div>
+                    <a href="https://www.facebook.com/FarmskinsOfficial/"><p class="social-linksT">facebook.com/FazendaBarbosa</p></a>
+                    <a href="https://www.facebook.com/FarmskinsOfficial/"><p class="social-linksT">x.com/FazendaBarbosa</p></a>
+                    <a href="https://www.facebook.com/FarmskinsOfficial/"><p class="social-linksT">instagram.com/FazendaBarbosa</p></a>
+                    <a href="https://www.facebook.com/FarmskinsOfficial/"><p class="social-linksT">facebook.com/FazendaBarbosa</p></a>
+                </div>
+
                 <div class="webFooter">
                     <h3>Endereço</h3>
-                    <p><a class="endereco" href="https://maps.app.goo.gl/ggJE1fdiY5YeRASo7">Av. Dr. Gastão Vidigal - Vila Leopoldina, São Paulo - SP, 02675-031</a><br />
-                    <iframe class="mapa" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1829.0176464620986!2d-46.7368765!3d-23.531233!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cef97ce99e9e03%3A0x78e7b5cf28733625!2sCeasa!5e0!3m2!1spt-BR!2sbr!4v1731292145574!5m2!1spt-BR!2sbr" width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
+                    <p>
+                        <a class="endereco" href="https://maps.app.goo.gl/ggJE1fdiY5YeRASo7">Av. Dr. Gastão Vidigal - Vila Leopoldina, São Paulo - SP, 02675-031</a><br />
+                        <iframe class="mapa" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1829.0176464620986!2d-46.7368765!3d-23.531233!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cef97ce99e9e03%3A0x78e7b5cf28733625!2sCeasa!5e0!3m2!1spt-BR!2sbr!4v1731292145574!5m2!1spt-BR!2sbr" width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </p>
                 </div>
+
             </div>
 
             <div class="credit"><a>© Lunarti's </a> &nbsp&nbsp&nbsp | &nbsp&nbsp&nbsp <a> Fazendas Barbosa</a></div>
