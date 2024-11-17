@@ -24,7 +24,8 @@ namespace Web_PIM.Controllers
         {
             if (Session["Administrador"] != null)
             {
-                return View(acCliente.consultaClienteF());
+                ViewBag.Clientes = acCliente.consultaClienteF();
+                return View(new mCliente());
             }
             else
             {

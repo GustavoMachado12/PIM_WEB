@@ -193,11 +193,11 @@ section {
     color: var(--black);
 }
 
-.login-form .option-menu a:hover {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+    .login-form .option-menu a:hover {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
 .login-form .option-menu .logout {
     color: #b30000;
@@ -214,13 +214,51 @@ section {
     padding: .8rem 3rem;
     font-size: 1.3rem;
     border-radius: 1.5rem;
-    border: .1rem solid var(--light-color);
+    border: .1rem solid var(--black);
     color: var(--black);
     cursor: pointer;
+    transition: all .3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
     .btn:hover {
         background: wheat;
+        color: #fff;
+    }
+
+    /* Botão Padrão */
+
+    .btn::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background-color: var(--black);
+        transition: all .3s;
+        /*border-radius: 5rem; - fazer com que a borda desapareça*/
+        z-index: -1;
+    }
+
+    .btn:hover::before {
+        width: 100%;
+    }
+
+    /* Botão com Mouse em cima */
+
+    .btn::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        border-radius: 10rem;
+        z-index: -2;
     }
 
 .content {
@@ -329,3 +367,128 @@ section {
             color: var(--light-color);
             padding: .5rem 0;
         }
+
+.barraSeparadora {
+    border: 30px solid rgba(0,0,0,.1);
+}
+
+.containerFooter {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+}
+
+.webFooter {
+    flex: 1;
+    padding: 10px;
+}
+
+.webFooter h3 {
+    font-size: 18px;
+    color: var(--black);
+    text-transform: capitalize;
+    margin-bottom: 30px;
+    font-weight: 500;
+    position: relative;
+}
+
+.webFooter h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background-color: green;
+    height: 2px;
+    box-sizing: border-box;
+    width: 50px;
+}
+
+.webFooter ul {
+    list-style: none;
+}
+
+    .webFooter ul li:not(:last-child) {
+    margin-bottom: 10px;
+    }
+
+    .webFooter ul li a{
+    font-size: 16px;
+    text-transform: capitalize;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 300;
+    color: #000;
+    display: block;
+    transition: all 0.3s ease;
+    }
+
+    .webFooter ul li a:hover {
+        color: #416238;
+        padding-left: 6px;
+    }
+
+.webFooter .social-links a{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-color: var(--black);
+    margin: 0 10px 10px 0;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    color: #fff;
+    transition: all 0.5s ease;
+}
+
+    .webFooter .social-links a:hover {
+        color: var(--black);
+        background-color: #fff;
+        border: 3px solid var(--black);
+    }
+
+.endereco {
+    font-size: 16px;
+    text-transform: capitalize;
+    color: var(--black);
+    text-decoration: none;
+    font-weight: 300;
+    color: var(--black);
+    padding-bottom: 50px;
+    transition: all 0.5s ease;
+}
+
+    .endereco:hover {
+        color: #416238;
+        text-decoration: underline;
+    }
+
+.credit {
+    font-size: 16px;
+    text-transform: capitalize;
+    color: var(--black);
+    text-decoration: none;
+    font-weight: 300;
+    color: var(--black);
+}
+
+
+    /* Responsatividade para o Footer */
+    @media(max-width: 767px) {
+        .webFooter {
+            width: 50%;
+            margin-bottom: 30px;
+        }
+    }
+
+    @media(max-width: 574px) {
+    .webFooter {
+        width: 100%;
+        }
+    }
+
+    @media(max-width: 574px) {
+    .mapa {
+        width: 400px;
+        height: 200px;
+        }
+    }

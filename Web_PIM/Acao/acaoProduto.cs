@@ -29,11 +29,11 @@ namespace Web_PIM.Acao
                 ProdutoLista.Add(
                         new mProduto
                         {
-                            id = Convert.ToUInt16(dr["Codigo"]),
+                            idProduto = Convert.ToString(dr["Codigo"]),
                             nomeProduto = Convert.ToString(dr["Nome"]),
                             categoria = Convert.ToString(dr["Categoria"]),
                             valor = Convert.ToString(dr["Valor"]),
-                            quantidade = Convert.ToUInt16(dr["Quantidade"]),
+                            quantidade = Convert.ToInt32(dr["Quantidade"]),
                             fotoProduto = Convert.ToString(dr["Foto"])
                         }) ;
             }

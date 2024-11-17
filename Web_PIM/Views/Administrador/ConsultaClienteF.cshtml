@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Web_PIM.Models.mCliente>
+﻿@model Web_PIM.Models.mCliente
 
 @{
     ViewBag.Title = "Cliente Fisico";
@@ -13,14 +13,19 @@
 
 <center>
 
-    <a class="button" href="#Cadastra">
-        <span class="button-text">
-            Cadastrar
-        </span>
-        <span class="button-icon">
-            <i class="fa-solid fa-plus"></i>
-        </span>
-    </a>
+
+    @if (Session["Administrador"] == null)
+    {
+        <a class="button" href="#Cadastra" onclick="openModal()" id="new">
+            <span class="button-icon">
+                <i class="fa-solid fa-plus"></i>
+            </span>
+            <span class="button-text">
+                Cadastrar
+            </span>
+        </a>
+    }
+
 
     <table class="content-table">
 
@@ -61,42 +66,25 @@
         </thead>
 
         <tbody>
-            @foreach(var item in Model)
+            @foreach (var cliente in ViewBag.Clientes as IEnumerable<Web_PIM.Models.mCliente>)
             {
                 <tr class="active-row">
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.id)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.nome)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.email)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.endereco)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.telefone)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.documento)
-                    </td>
+                    <td>@cliente.id</td>
+                    <td>@cliente.nome</td>
+                    <td>@cliente.email</td>
+                    <td>@cliente.endereco</td>
+                    <td>@cliente.telefone</td>
+                    <td>@cliente.documento</td>
 
                     <td></td>
 
                     <td>
-                        <a class="fa-solid fa-pen" href="@Url.Action("editaCliF", "Administrador", new { id = item.id })" style="color: #0047AB"></a>
+                        <a class="fa-solid fa-pen" href="@Url.Action("editaCliF", "Administrador", new { id = cliente.id })" style="color: #0047AB"></a>
                     </td>
 
                     <td>
-                        <a class="fa-solid fa-trash" href="@Url.Action("excluiClienteF", "Administrador", new { id = item.id })" style="color: #A52A2A" onclick="return confirm('Deseja realmente deletar?');"></a>
+                        <a class="fa-solid fa-trash" href="@Url.Action("excluiClienteF", "Administrador", new { id = cliente.id })" style="color: #A52A2A" onclick="return confirm('Deseja realmente deletar?');"></a>
                     </td>
 
                 </tr>
@@ -106,6 +94,86 @@
     </table>
 
 </center>
+
+
+<div class="modal-container">
+    <div class="modal">
+        @using (Html.BeginForm("ConsultaClienteF", "Administrador", FormMethod.Post))
+        {
+                <div class="section personal-data">
+                    <label for="m-nome">Nome</label>
+                    @Html.EditorFor(x => x.nome, new { htmlAttributes = new { @class = "input", type = "text", id = "m-nome", required = "required" } })
+
+
+                    <label for="m-email">Email</label>
+                    @Html.EditorFor(x => x.email, new { htmlAttributes = new { @class = "input", type = "email", id = "m-email", required = "required" } })
+
+
+                    <label for="m-telefone">Telefone</label>
+                    @Html.EditorFor(x => x.telefone, new { htmlAttributes = new { @class = "input", type = "number", id = "m-telefone", required = "required" } })
+
+
+                    <label for="m-documento">Documento</label>
+                    @Html.EditorFor(x => x.documento, new { htmlAttributes = new { @class = "input", type = "text", id = "m-documento", required = "required" } })
+                </div>
+
+                <div class="section address-data">
+                    <label for="m-cep">CEP</label>
+                    @Html.EditorFor(x => x.cep, new { htmlAttributes = new { @class = "input", type = "number", id = "m-cep", required = "required" } })
+
+                    <label for="m-logradouro">Logradouro</label>
+                    @Html.EditorFor(x => x.logradouro, new { htmlAttributes = new { @class = "input", type = "text", id = "m-logradouro", required = "required" } })
+
+                    <label for="m-numero">Número</label>
+                    @Html.EditorFor(x => x.numLogradouro, new { htmlAttributes = new { @class = "input", type = "number", id = "m-numero", required = "required" } })
+
+                    <label for="m-bairro">Bairro</label>
+                    @Html.EditorFor(x => x.bairro, new { htmlAttributes = new { @class = "input", type = "text", id = "m-bairro", required = "required" } })
+
+                    <label for="m-cidade">Cidade</label>
+                    @Html.EditorFor(x => x.cidade, new { htmlAttributes = new { @class = "input", type = "text", id = "m-cidade", required = "required" } })
+
+                    <label for="m-estado">Estado</label>
+                    @Html.EditorFor(x => x.estado, new { htmlAttributes = new { @class = "input", type = "text", id = "m-estado", required = "required" } })
+
+                    <label for="m-Complemento">Complemento (*)</label>
+                    @Html.EditorFor(x => x.complemento, new { htmlAttributes = new { @class = "input", type = "text", id = "m-complemento" } })
+
+                </div>
+
+                <div class="btn-submit">
+                    <button type="submit" id="btnSalvar">
+                        Salvar
+                    </button>
+                </div>
+
+        }
+
+    </div>
+</div>
+
+
+<script src="script.js"></script>
+
+<script>
+    const modal = document.querySelector('.modal-container')
+    const tbody = document.querySelector('tbody')
+    const sNome = document.querySelector('#m-nome')
+    const sFuncao = document.querySelector('#m-funcao')
+    const sSalario = document.querySelector('#m-salario')
+    const btnSalvar = document.querySelector('#btnSalvar')
+
+    function openModal(edit = false, index = 0) {
+        modal.classList.add('active')
+
+        modal.onclick = e => {
+            if (e.target.className.indexOf('modal-container') !== -1) {
+                modal.classList.remove('active')
+            }
+        }
+
+    }
+</script>
 
 
 

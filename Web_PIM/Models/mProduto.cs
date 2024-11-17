@@ -7,7 +7,9 @@ namespace Web_PIM.Models
 {
     public class mProduto
     {
-        public int id { get; set; }
+
+
+        public string idProduto { get; set; }
 
         public string nomeProduto { get; set; }
 

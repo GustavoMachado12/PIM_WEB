@@ -24,7 +24,7 @@ namespace Web_PIM.Models
         public string documento { get; set;}
 
 
-
+        //DADOS LOGIN
         [DisplayName("Login")]
         public string login { get; set;}
 
@@ -33,6 +33,23 @@ namespace Web_PIM.Models
 
         [DisplayName("Confirma Senha")]
         public string confirmaSenha { get; set;}
+
+
+        //DADOS ENDERECO
+        public string cep { get; set;}
+
+        public string logradouro { get; set;}
+
+        public int numLogradouro { get; set;}
+        
+        public string bairro { get; set;}
+
+        public string cidade { get; set;}
+
+        public string estado { get; set;}
+
+        public string complemento { get; set;}
+
 
     }
 }

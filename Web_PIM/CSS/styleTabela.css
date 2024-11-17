@@ -1,6 +1,23 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
 
-h2{
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+:root {
+    --bg-clr: #f5f5f5;
+    --btn-clr: #027f4d;
+    --btn-hover-clr: #027f4d;
+}
+
+h2 {
     padding: 1.5em;
 }
 
@@ -87,4 +104,167 @@ h2{
 .button-icon {
     font-size: 1.5em;
     background: rgba(0, 0, 0, 0.08);
+}
+
+
+
+
+
+button {
+    cursor: pointer;
+}
+
+.modal-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px;
+    background-color: white;
+    border-radius: 10px;
+    width: 70%;
+    max-width: 900px;
+}
+
+    .modal form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .modal label {
+        font-size: 15px;
+        width: 100%;
+    }
+
+    .modal .input {
+        width: 100%;
+        outline: none;
+        padding: 5px 10px;
+        margin-bottom: 20px;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+    }
+
+        .modal .input:focus {
+            border-bottom: 1px solid #000;
+        }
+
+    .modal button {
+        width: 25%;
+        margin: 10px auto;
+        outline: none;
+        border-radius: 20px;
+        padding: 10px 10px;
+        border: none;
+        background-color: var(--btn-clr);
+        color: white;
+        display: flex;
+        justify-content: center;
+    }
+
+    .modal .section {
+        width: 48%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .modal .btn-submit {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+    }
+
+.active {
+    display: flex;
+}
+
+    .active .modal {
+        animation: modal .4s;
+    }
+
+@keyframes modal {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -60px, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+td button {
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+    td button i {
+        font-size: 25px;
+    }
+
+        td button i:first-child {
+            margin-right: 10px;
+        }
+
+@media (max-width: 700px) {
+    body {
+        font-size: 10px;
+    }
+
+    .header span {
+        font-size: 15px;
+    }
+
+    #new {
+        padding: 5px;
+        font-size: 10px;
+    }
+
+    thead tr th.acao {
+        width: auto !important;
+    }
+
+    td button i {
+        font-size: 20px !important;
+    }
+
+        td button i:first-child {
+            margin-right: 0;
+        }
+
+    .modal {
+        width: 90% !important;
+    }
+
+        .modal label {
+            font-size: 12px !important;
+        }
+
+        .modal form {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .modal .section {
+            width: 100%;
+        }
 }

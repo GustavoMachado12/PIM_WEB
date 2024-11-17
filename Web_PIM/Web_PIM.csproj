@@ -156,6 +156,7 @@
     <Content Include="CSS\ListaProdutos.css" />
     <Content Include="CSS\styleAdmin.css" />
     <Content Include="CSS\styleCrudAdm.css" />
+    <Content Include="CSS\styleForms.css" />
     <Content Include="CSS\styleFormsAdm.css" />
     <Content Include="CSS\styleRegister.css" />
     <Content Include="CSS\styleHome.css" />
