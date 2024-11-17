@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Web_PIM.Acoes
 {
@@ -176,6 +177,78 @@ namespace Web_PIM.Acoes
             con.CloseConnection();
         }
 
+        //CONSULTA PELO ID
+        public mCliente consultaClientePorId(int id)
+        {
+            mCliente cliente = null;
 
+            SqlCommand cmd = new SqlCommand("EXEC pSelectClienteF_PorID @CodCliente", con.OpenConnection());
+            cmd.Parameters.AddWithValue("@CodCliente", id);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    cliente = new mCliente
+                    {
+                        id = Convert.ToInt32(dr["Codigo"]),
+                        nome = dr["Nome"].ToString(),
+                        email = dr["E-mail"].ToString(),
+                        telefone = dr["Telefone"].ToString(),
+                        documento = dr["CPF"].ToString(), 
+                        endereco = dr["Endereco"].ToString(),
+                    };
+                }
+            }
+
+            SepararEndereco(cliente);
+
+            con.CloseConnection();
+
+            return cliente;
+        }
+
+        //ATUALIZA CLIENTE FISICO
+        public mCliente atualizaClienteF(mCliente cliente)
+        {
+            SqlCommand cmd = new SqlCommand("pAlteraClienteF", con.OpenConnection());
+
+
+            return cliente;
+        }
+
+        //SEPARA ENDERECO
+        public void SepararEndereco(mCliente cliente)
+        {
+            if (string.IsNullOrEmpty(cliente.endereco))
+                throw new ArgumentException("O endereço completo não pode ser vazio ou nulo.");
+            var partes = cliente.endereco.Split(',');
+
+            if (partes.Length < 5)
+                throw new ArgumentException("Formato de endereço inválido.");
+
+            cliente.cep = partes[0].Trim();
+            cliente.logradouro = partes[1].Trim();
+            cliente.bairro = partes[2].Trim();
+            cliente.cidade = partes[3].Trim();
+            cliente.estado = partes[4].Trim();
+
+            if (cliente.logradouro.Contains(" "))
+            {
+                var logradouroPartes = cliente.logradouro.Split(' ');
+                if (int.TryParse(logradouroPartes.Last(), out int numero))
+                {
+                    cliente.numLogradouro = numero;
+                    cliente.logradouro = string.Join(" ", logradouroPartes.Take(logradouroPartes.Length - 1));
+                }
+            }
+
+            if (partes.Length > 5)
+            {
+                cliente.complemento = partes[5].Trim();
+            }
+        }
     }
 }

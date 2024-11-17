@@ -7,16 +7,12 @@
 
 <link rel="stylesheet" href="~/CSS/styleTabela.css" type="text/css" />
 
-
 <h2>Cliente Físico</h2>
 
-
 <center>
-
-
-    @if (Session["Administrador"] == null)
+    @if (Session["Administrador"] != null)
     {
-        <a class="button" href="#Cadastra" onclick="openModal()" id="new">
+        <a class="button" href="#PopUpCadastra" onclick="openModal()" id="new">
             <span class="button-icon">
                 <i class="fa-solid fa-plus"></i>
             </span>
@@ -26,137 +22,153 @@
         </a>
     }
 
-
     <table class="content-table">
-
         <thead>
             <tr>
                 <th>
                     @Html.DisplayNameFor(x => x.id)
                 </th>
-
                 <th>
                     @Html.DisplayNameFor(x => x.nome)
                 </th>
-
                 <th>
                     @Html.DisplayNameFor(x => x.email)
                 </th>
-
                 <th>
                     @Html.DisplayNameFor(x => x.endereco)
                 </th>
-
                 <th>
                     @Html.DisplayNameFor(x => x.telefone)
                 </th>
-
                 <th>
                     @Html.DisplayName("CPF")
                 </th>
-
-                <th>
-                </th>
-                <th>
-                </th>
-                <th>
-                </th>
-
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
-
         <tbody>
             @foreach (var cliente in ViewBag.Clientes as IEnumerable<Web_PIM.Models.mCliente>)
             {
                 <tr class="active-row">
-
                     <td>@cliente.id</td>
                     <td>@cliente.nome</td>
                     <td>@cliente.email</td>
                     <td>@cliente.endereco</td>
                     <td>@cliente.telefone</td>
                     <td>@cliente.documento</td>
-
                     <td></td>
-
                     <td>
-                        <a class="fa-solid fa-pen" href="@Url.Action("editaCliF", "Administrador", new { id = cliente.id })" style="color: #0047AB"></a>
+                        <a class="fa-solid fa-pen" href="#Edit" style="color: #0047AB" onclick="openModalEdit(@cliente.id)"></a>
                     </td>
-
                     <td>
                         <a class="fa-solid fa-trash" href="@Url.Action("excluiClienteF", "Administrador", new { id = cliente.id })" style="color: #A52A2A" onclick="return confirm('Deseja realmente deletar?');"></a>
                     </td>
-
                 </tr>
             }
         </tbody>
-
     </table>
-
 </center>
-
 
 <div class="modal-container">
     <div class="modal">
         @using (Html.BeginForm("ConsultaClienteF", "Administrador", FormMethod.Post))
         {
-                <div class="section personal-data">
-                    <label for="m-nome">Nome</label>
-                    @Html.EditorFor(x => x.nome, new { htmlAttributes = new { @class = "input", type = "text", id = "m-nome", required = "required" } })
+            <div class="section personal-data">
+                <label for="m-nome">Nome</label>
+                @Html.EditorFor(x => x.nome, new { htmlAttributes = new { @class = "input", type = "text", id = "m-nome", required = "required" } })
 
+                <label for="m-email">Email</label>
+                @Html.EditorFor(x => x.email, new { htmlAttributes = new { @class = "input", type = "email", id = "m-email", required = "required" } })
 
-                    <label for="m-email">Email</label>
-                    @Html.EditorFor(x => x.email, new { htmlAttributes = new { @class = "input", type = "email", id = "m-email", required = "required" } })
+                <label for="m-telefone">Telefone</label>
+                @Html.EditorFor(x => x.telefone, new { htmlAttributes = new { @class = "input", type = "number", id = "m-telefone", required = "required" } })
 
+                <label for="m-documento">Documento</label>
+                @Html.EditorFor(x => x.documento, new { htmlAttributes = new { @class = "input", type = "text", id = "m-documento", required = "required" } })
+            </div>
 
-                    <label for="m-telefone">Telefone</label>
-                    @Html.EditorFor(x => x.telefone, new { htmlAttributes = new { @class = "input", type = "number", id = "m-telefone", required = "required" } })
+            <div class="section address-data">
+                <label for="m-cep">CEP</label>
+                @Html.EditorFor(x => x.cep, new { htmlAttributes = new { @class = "input", type = "number", id = "m-cep", required = "required" } })
 
+                <label for="m-logradouro">Logradouro</label>
+                @Html.EditorFor(x => x.logradouro, new { htmlAttributes = new { @class = "input", type = "text", id = "m-logradouro", required = "required" } })
 
-                    <label for="m-documento">Documento</label>
-                    @Html.EditorFor(x => x.documento, new { htmlAttributes = new { @class = "input", type = "text", id = "m-documento", required = "required" } })
-                </div>
+                <label for="m-numero">Número</label>
+                @Html.EditorFor(x => x.numLogradouro, new { htmlAttributes = new { @class = "input", type = "number", id = "m-numero", required = "required" } })
 
-                <div class="section address-data">
-                    <label for="m-cep">CEP</label>
-                    @Html.EditorFor(x => x.cep, new { htmlAttributes = new { @class = "input", type = "number", id = "m-cep", required = "required" } })
+                <label for="m-bairro">Bairro</label>
+                @Html.EditorFor(x => x.bairro, new { htmlAttributes = new { @class = "input", type = "text", id = "m-bairro", required = "required" } })
 
-                    <label for="m-logradouro">Logradouro</label>
-                    @Html.EditorFor(x => x.logradouro, new { htmlAttributes = new { @class = "input", type = "text", id = "m-logradouro", required = "required" } })
+                <label for="m-cidade">Cidade</label>
+                @Html.EditorFor(x => x.cidade, new { htmlAttributes = new { @class = "input", type = "text", id = "m-cidade", required = "required" } })
 
-                    <label for="m-numero">Número</label>
-                    @Html.EditorFor(x => x.numLogradouro, new { htmlAttributes = new { @class = "input", type = "number", id = "m-numero", required = "required" } })
+                <label for="m-estado">Estado</label>
+                @Html.EditorFor(x => x.estado, new { htmlAttributes = new { @class = "input", type = "text", id = "m-estado", required = "required" } })
 
-                    <label for="m-bairro">Bairro</label>
-                    @Html.EditorFor(x => x.bairro, new { htmlAttributes = new { @class = "input", type = "text", id = "m-bairro", required = "required" } })
+                <label for="m-Complemento">Complemento (*)</label>
+                @Html.EditorFor(x => x.complemento, new { htmlAttributes = new { @class = "input", type = "text", id = "m-complemento" } })
+            </div>
 
-                    <label for="m-cidade">Cidade</label>
-                    @Html.EditorFor(x => x.cidade, new { htmlAttributes = new { @class = "input", type = "text", id = "m-cidade", required = "required" } })
-
-                    <label for="m-estado">Estado</label>
-                    @Html.EditorFor(x => x.estado, new { htmlAttributes = new { @class = "input", type = "text", id = "m-estado", required = "required" } })
-
-                    <label for="m-Complemento">Complemento (*)</label>
-                    @Html.EditorFor(x => x.complemento, new { htmlAttributes = new { @class = "input", type = "text", id = "m-complemento" } })
-
-                </div>
-
-                <div class="btn-submit">
-                    <button type="submit" id="btnSalvar">
-                        Salvar
-                    </button>
-                </div>
-
+            <div class="btn-submit">
+                <button type="submit" id="btnSalvar">Cadastrar</button>
+            </div>
         }
-
     </div>
 </div>
 
+<div class="modal-container-edit">
+    <div class="modal">
+        @using (Html.BeginForm("EditaClienteF", "Administrador", FormMethod.Post))
+        {
+            <div class="section personal-data">
+                <label for="m-nome-edit">Nome</label>
+                @Html.EditorFor(x => x.nome, new { htmlAttributes = new { @class = "input", type = "text", id = "m-nome-edit", required = "required" } })
+
+                <label for="m-email-edit">Email</label>
+                @Html.EditorFor(x => x.email, new { htmlAttributes = new { @class = "input", type = "email", id = "m-email-edit", required = "required" } })
+
+                <label for="m-telefone-edit">Telefone</label>
+                @Html.EditorFor(x => x.telefone, new { htmlAttributes = new { @class = "input", type = "number", id = "m-telefone-edit", required = "required" } })
+
+                <label for="m-documento-edit">Documento</label>
+                @Html.EditorFor(x => x.documento, new { htmlAttributes = new { @class = "input", type = "text", id = "m-documento-edit", required = "required" } })
+            </div>
+
+            <div class="section address-data">
+                <label for="m-cep-edit">CEP</label>
+                @Html.EditorFor(x => x.cep, new { htmlAttributes = new { @class = "input", type = "number", id = "m-cep-edit", required = "required" } })
+
+                <label for="m-logradouro-edit">Logradouro</label>
+                @Html.EditorFor(x => x.logradouro, new { htmlAttributes = new { @class = "input", type = "text", id = "m-logradouro-edit", required = "required" } })
+
+                <label for="m-bairro-edit">Bairro</label>
+                @Html.EditorFor(x => x.bairro, new { htmlAttributes = new { @class = "input", type = "text", id = "m-bairro-edit", required = "required" } })
+
+                <label for="m-cidade-edit">Cidade</label>
+                @Html.EditorFor(x => x.cidade, new { htmlAttributes = new { @class = "input", type = "text", id = "m-cidade-edit", required = "required" } })
+
+                <label for="m-estado-edit">Estado</label>
+                @Html.EditorFor(x => x.estado, new { htmlAttributes = new { @class = "input", type = "text", id = "m-estado-edit", required = "required" } })
+
+                <label for="m-Complemento-edit">Complemento (*)</label>
+                @Html.EditorFor(x => x.complemento, new { htmlAttributes = new { @class = "input", type = "text", id = "m-complemento-edit" } })
+            </div>
+
+            <div class="btn-submit">
+                <button type="submit" id="btnSalvar">Salvar</button>
+            </div>
+        }
+    </div>
+</div>
 
 <script src="script.js"></script>
 
 <script>
     const modal = document.querySelector('.modal-container')
+    const modalEdit = document.querySelector('.modal-container-edit')
     const tbody = document.querySelector('tbody')
     const sNome = document.querySelector('#m-nome')
     const sFuncao = document.querySelector('#m-funcao')
@@ -171,9 +183,44 @@
                 modal.classList.remove('active')
             }
         }
-
     }
+
+function openModalEdit(clienteId) {
+    modalEdit.classList.add('active');
+
+    modalEdit.onclick = e => {
+        if (e.target.className.indexOf('modal-container-edit') !== -1) {
+            modalEdit.classList.remove('active');
+        }
+    }
+
+    $.ajax({
+        url: '@Url.Action("GetClienteById", "Administrador")',
+        type: 'GET',
+        data: { id: clienteId },
+        success: function (response) {
+            if (response.success) {
+                $('#m-nome-edit').val(response.nome);
+                $('#m-email-edit').val(response.email);
+                $('#m-telefone-edit').val(response.telefone);
+                $('#m-documento-edit').val(response.documento);
+                $('#m-cep-edit').val(response.cep);
+                $('#m-logradouro-edit').val(response.logradouro);
+                $('#m-numero-edit').val(response.numLogradouro);
+                $('#m-bairro-edit').val(response.bairro);
+                $('#m-cidade-edit').val(response.cidade);
+                $('#m-estado-edit').val(response.estado);
+                $('#m-complemento-edit').val(response.complemento);
+
+                $('.modal-container-edit').show();
+            } else {
+                alert(response.message);
+            }
+        },
+        error: function () {
+            alert("Erro ao buscar dados do cliente.");
+        }
+    });
+}
 </script>
-
-
 
