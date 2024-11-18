@@ -9,6 +9,7 @@
     --outline-hover: .2rem solid var(--black);
     --light-color: #666;
     --btn-bg: #0cf;
+    --cor-secundaria: #416238;
 }
 
 * {
@@ -32,17 +33,26 @@ body {
     position: relative;
     max-width: 700px;
     width: 100%;
-    background: #fff;
+    background: #fff9de;
     padding: 25px;
     border-radius: 8px;
     box-shadow: var(--box-shadow);
+    border: solid .5px var(--cor-secundaria);
 }
 
     .container header {
-        font-size: 1.5rem;
+        font-size: 2rem;
         color: var(--black);
         font-weight: 500;
         text-align: center;
+    }
+
+    .barra-separadora {
+        height: .8px;
+        background-color: var(--cor-secundaria);
+        margin-top: .8px;
+        border: solid .8px var(--cor-secundaria);
+        border-radius: 10px;
     }
 
     .container .form {
@@ -59,7 +69,7 @@ body {
         height: 50px;
         width: 100%;
         outline: none;
-        border: 1px solid #ddd;
+        border: 1px solid var(--cor-secundaria);
         font-size: 1rem;
         border-radius: 6px;
         padding: 0 16px;
@@ -71,6 +81,16 @@ body {
 
 .input-box label {
     color: var(--black);
+    font-weight: 700;
+}
+
+#myCheckbox {
+    margin-top: 20px;
+}
+
+#myCheckbox + label {
+    font-size: 16px;
+    color: #000;
 }
 
 .button {
@@ -79,15 +99,14 @@ body {
     padding: .8rem 3rem;
     font-size: 1.3rem;
     border-radius: 10rem;
-    border: .1rem solid var(--light-color);
-    color: var(--black);
+    border: .1rem solid var(--cor-secundaria);
+    color: #fff;
     cursor: pointer;
-    transition: all .3s ease-in-out;
+    transition: all .3s ease;
     position: relative;
     overflow: hidden;
     z-index: 1;
 }
-
     .button:hover {
         color: #fff;
     }
@@ -99,7 +118,7 @@ body {
         left: 0;
         width: 0%;
         height: 100%;
-        background-color: #0072a3;
+        background-color: var(--cor-secundaria);
         transition: all .3s;
         border-radius: 10rem;
         z-index: -1;
@@ -108,7 +127,7 @@ body {
     .button:hover::before {
         width: 100%;
     }
-
+    
     .button::after {
         content: '';
         position: absolute;
@@ -116,7 +135,7 @@ body {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: #0cf;
+        background-color: var(--black);
         border-radius: 10rem;
         z-index: -2;
     }

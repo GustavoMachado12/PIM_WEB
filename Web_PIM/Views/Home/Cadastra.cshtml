@@ -23,6 +23,7 @@
 <body>
     <section class="container">
         <header>Criar Cadastro</header>
+        <hr class="barra-separadora"/>
         @using (Html.BeginForm("Cadastra", "Home", FormMethod.Post, new { @class = "form" }))
         {
             <div class="input-box">
@@ -54,6 +55,11 @@
                 <label>Confirme a Senha</label>
                 @Html.EditorFor(x => x.confirmaSenha, new { htmlAttributes = new { type = "password", placeholder = "Digite sua senha novamente", required = "required" } })
             </div>
+
+            <label>
+                <input type="checkbox" id="myCheckbox" />
+                <span for="myCheckbox">Eu entendo e concordo com a <a href="https://youtu.be/xvFZjo5PgG0?si=YQ-eoruZgUdvXcsT">Política de Privacidade</a>.</span>
+            </label>
 
             <button type="submit" class="button">Criar Conta</button>
         }
