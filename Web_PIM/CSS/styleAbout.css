@@ -25,8 +25,15 @@
 .texto h1 {
     text-transform: uppercase;
     font: var(--font-principal);
-    color: var(--cor-font-principal);
+    color: #1c165b;
     margin-bottom: 10px;
+    justify-self: center;
+}
+
+.barra-separadora {
+    height: 3px;
+    background-color: var(--cor-font-secundaria);
+    margin-top: 5px;
 }
 
 .texto cite {

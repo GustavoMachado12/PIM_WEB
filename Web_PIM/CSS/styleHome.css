@@ -217,14 +217,14 @@ section {
     border: .1rem solid var(--black);
     color: var(--black);
     cursor: pointer;
-    transition: all .3s ease-in-out;
+    transition: all .5s ease-in-out;
     position: relative;
     overflow: hidden;
     z-index: 1;
 }
 
     .btn:hover {
-        background: wheat;
+        background: var(--black);
         color: #fff;
     }
 
