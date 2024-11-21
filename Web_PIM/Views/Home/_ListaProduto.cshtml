@@ -12,7 +12,7 @@
 <div class="swiper-slide box">
     @foreach (var item in Model)
     {
-        <img src="../image/cebolaRoxa.png" alt="Cebola Roxa">
+        <img src="@item.fotoProduto" alt="Imagem Produto">
         <h3>@item.nomeProduto</h3>
         <div class="price">R$@item.valor</div>
         <a href="#" class="btn">Carrinho</a>

@@ -130,6 +130,8 @@ button {
         animation: modal 0.4s;
     }
 
+
+
 @keyframes modal {
     from {
         opacity: 0;
@@ -288,3 +290,40 @@ td button {
 }
 
 
+/* ESTILO DO UPLOAD DE IMAGEM */
+input[type="file"]::file-selector-button {
+    display: none;
+}
+
+.custom-file-upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    background-color: var(--bg-clr);
+    border: none;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    color: #757575;
+    text-align: center;
+}
+
+    .custom-file-upload:hover {
+        background-color: #e0e0e0;
+    }
+
+.input-file {
+    display: none;
+}
+
+#custom-file-label {
+    width: 100%;
+    font-size: 15px;
+    text-align: left;
+    font-weight: normal;
+    color: #757575;
+}

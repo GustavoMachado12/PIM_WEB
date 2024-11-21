@@ -166,6 +166,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\mCargos.cs" />
+    <Compile Include="Models\mCategoria.cs" />
     <Compile Include="Models\mCliente.cs" />
     <Compile Include="Models\mClienteLogin.cs" />
     <Compile Include="Models\mFornecedor.cs" />
@@ -207,6 +208,7 @@
     <Content Include="Imagens\Farm3.jpg" />
     <Content Include="Imagens\Farm4.jpg" />
     <Content Include="Imagens\logo.png" />
+    <Content Include="Imagens\Produtos\Alface.png" />
     <Content Include="Imagens\repolhoRoxo.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -249,6 +251,7 @@
     <Content Include="Views\Administrador\ConsultaClienteJ.cshtml" />
     <Content Include="Views\Administrador\ConsultaFuncionario.cshtml" />
     <Content Include="Views\Administrador\ConsultaFornecedor.cshtml" />
+    <Content Include="Views\Administrador\ConsultaProduto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

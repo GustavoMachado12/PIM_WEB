@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace Web_PIM.Controllers
         acaoCliente acCliente = new acaoCliente();
         acaoFuncionario acFuncionario = new acaoFuncionario();
         acaoFornecedor acFornecedor = new acaoFornecedor();
+        acaoProduto acProduto = new acaoProduto();
 
         
         public ActionResult Index()
@@ -409,6 +411,138 @@ namespace Web_PIM.Controllers
             {
                 return Json(new { success = false, message = "Erro: " + ex.Message }, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        //------------------------------------------------------------------------------------------------------------------|PRODUTOS|----------------------------------
+
+        public ActionResult ConsultaProduto()
+        {
+            if (Session["Administrador"] != null || Session["Funcionario"] != null)
+            {
+                ViewBag.Produtos = acProduto.consultaProduto();
+
+                var listaCategorias = acProduto.ConsultaCategorias();
+                List<SelectListItem> categorias = new List<SelectListItem>();
+
+                foreach (var categoria in listaCategorias)
+                {
+                    categorias.Add(new SelectListItem
+                    {
+                        Value = categoria.idCategoria.ToString(),
+                        Text = categoria.nmCategoria.ToString()
+                    });
+                }
+                ViewBag.Categorias = categorias;
+
+                return View(new mProduto());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult CadastraProduto(mProduto produto, HttpPostedFileBase fotoProduto)
+        {
+            //acProduto.pegaIdCategoria(produto);
+
+            if (fotoProduto != null && fotoProduto.ContentLength > 0)
+            {
+                string arquivo = Path.GetFileName(fotoProduto.FileName); 
+                string caminho = "/Imagens/Produtos/" + arquivo; 
+                string nomeArquivo = Path.Combine(Server.MapPath("/Imagens/Produtos/"), arquivo);
+                fotoProduto.SaveAs(nomeArquivo);
+                produto.fotoProduto = caminho;
+                
+                acProduto.CadastraProduto(produto); 
+            }
+
+            return RedirectToAction("ConsultaProduto", "Administrador");
+        }
+
+        //EDITA PRODUTO
+        [HttpPost]
+        public ActionResult EditaProduto(mProduto produto, HttpPostedFileBase fotoProduto, string fotoProdutoLink)
+        {
+            if (!string.IsNullOrEmpty(fotoProdutoLink))
+            {
+                produto.fotoProduto = fotoProdutoLink; 
+            }
+            else if (fotoProduto != null && fotoProduto.ContentLength > 0)
+            {
+                string arquivo = Path.GetFileName(fotoProduto.FileName);
+                string caminho = "/Imagens/Produtos/" + arquivo;
+                string nomeArquivo = Path.Combine(Server.MapPath("/Imagens/Produtos/"), arquivo);
+                fotoProduto.SaveAs(nomeArquivo);
+                produto.fotoProduto = caminho;
+            }
+
+            if (Session["Administrador"] != null || Session["Funcionario"] != null)
+            {
+                bool atualizado = acProduto.atualizaProduto(produto);
+
+                if (atualizado)
+                {
+                    TempData["MensagemSucesso"] = "Produto atualizado com sucesso!";
+                    return RedirectToAction("ConsultaProduto", "Administrador");
+                }
+                else
+                {
+                    TempData["MensagemErro"] = "Erro ao atualizar o produto. Tente novamente.";
+                    return RedirectToAction("ConsultaProduto", "Administrador");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        //DELETA PRODUTO
+        public ActionResult ExcluiProduto(int id)
+        {
+            if (Session["Administrador"] != null || Session["Funcionario"] != null)
+            {
+
+                bool sucesso = acProduto.deletaProduto(id);
+
+                if (sucesso)
+                {
+                    ViewBag.Aviso = "Produto excluído com sucesso.";
+                }
+                else
+                {
+                    ViewBag.Aviso = "Erro ao excluir o fornecedor.";
+                }
+
+                return RedirectToAction("ConsultaProduto", "Administrador");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+
+        [HttpGet]
+        public JsonResult GetProdutoById(int id)
+        {
+            var produto = acProduto.consultaProdutoPorId(id);
+            if (produto != null)
+            {
+                return Json(new
+                {
+                    success = true,
+                    idProduto = produto.idProduto,
+                    nomeProduto = produto.nomeProduto,
+                    valor = produto.valor,
+                    idCategoria = produto.idCategoria, 
+                    quantidade = produto.quantidade,
+                    fotoProduto = produto.fotoProduto
+                }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { success = false, message = "Produto não encontrado." }, JsonRequestBehavior.AllowGet);
         }
 
 
