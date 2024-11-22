@@ -193,6 +193,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="CSS\styleListaProdutos.css" />
     <Content Include="CSS\styleRegister.css" />
     <Content Include="CSS\styleHome.css" />
     <Content Include="CSS\styleTabela.css" />

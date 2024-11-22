@@ -445,7 +445,6 @@ namespace Web_PIM.Controllers
         [HttpPost]
         public ActionResult CadastraProduto(mProduto produto, HttpPostedFileBase fotoProduto)
         {
-            //acProduto.pegaIdCategoria(produto);
 
             if (fotoProduto != null && fotoProduto.ContentLength > 0)
             {

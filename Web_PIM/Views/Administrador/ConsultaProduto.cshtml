@@ -163,11 +163,11 @@
                         document.getElementById('m-categoria-edit').value = data.idCategoria;
                         document.getElementById('m-quantidade-edit').value = data.quantidade;
 
-                        const fotoProdutoLink = document.getElementById('fotoProdutoLink'); 
+                        const fotoProdutoLink = document.getElementById('fotoProdutoLink');
                         if (data.fotoProduto) {
                             fotoProdutoLink.value = data.fotoProduto;
                         } else {
-                            fotoProdutoLink.value = ''; 
+                            fotoProdutoLink.value = '';
                         }
                     } else {
                         alert(data.message);
@@ -177,6 +177,8 @@
                     console.error("Erro ao buscar os dados do produto:", error);
                     alert("Ocorreu um erro ao buscar os dados do produto.");
                 });
+        } else {
+            modalCadastro.classList.add('active');
         }
     }
 
