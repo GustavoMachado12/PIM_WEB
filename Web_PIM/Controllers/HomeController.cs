@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using Web_PIM.Acao;
 using Web_PIM.Acoes;
 using Web_PIM.Models;
 
@@ -13,6 +14,8 @@ namespace Web_PIM.Controllers
     {
         acaoLogin acLogin = new acaoLogin();
         acaoCliente acCliente = new acaoCliente();
+        acaoProduto acProduto = new acaoProduto();
+        
 
         public ActionResult Index()
         {
@@ -37,12 +40,12 @@ namespace Web_PIM.Controllers
             if (cmLogin.nvlAcesso == "Administrador")
             {
                 Session["Administrador"] = cmLogin;
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Administrador");
             }
             else if (cmLogin.nvlAcesso == "Funcionario")
             {
                 Session["Funcionario"] = cmLogin;
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Administrador");
             }
             else if (cmLogin.nvlAcesso == "Cliente")
             {
@@ -119,6 +122,12 @@ namespace Web_PIM.Controllers
             Session["Administrador"] = null;
 
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult _ListaProduto()
+        {
+
+            return PartialView(acProduto.PegaTodosProdutos()); 
         }
     }
 }

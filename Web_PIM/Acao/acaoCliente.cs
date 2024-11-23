@@ -3,6 +3,8 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Web_PIM.Acoes
 {
@@ -10,6 +12,50 @@ namespace Web_PIM.Acoes
     {
         conexao con = new conexao();
 
+
+        //CONSULTA CLIENTE FISICO 
+        public List<mCliente> consultaClienteF()
+        {
+            List<mCliente> ClienteLista = new List<mCliente>();
+
+            SqlCommand cmd = new SqlCommand("EXEC pSelectClienteF_Descripto", con.OpenConnection());
+            SqlDataAdapter sd = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sd.Fill(dt);
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                ClienteLista.Add(
+                        new mCliente
+                        {
+                            id = Convert.ToInt32(dr["Codigo"]),
+                            nome = Convert.ToString(dr["Nome"]),
+                            email = Convert.ToString(dr["E-mail"]),
+                            endereco = Convert.ToString(dr["Endereco"]),
+                            telefone = Convert.ToString(dr["Telefone"]),
+                            documento = Convert.ToString(dr["CPF"])
+                        });
+            }
+            con.CloseConnection();
+
+            return ClienteLista;
+        }
+
+        //DELETA CLIENTE FISICO
+        public bool deletaClienteF(int id)
+        {
+            SqlCommand cmd = new SqlCommand("pExcluiCliente @CodCliente", con.OpenConnection());
+            cmd.Parameters.AddWithValue("@CodCliente", id);
+
+            int i = cmd.ExecuteNonQuery();
+            con.CloseConnection();
+
+            if (i >= 1)
+                return true;
+                
+            else
+                return false;
+        }
 
         //CADASTRA CLIENTE FISICO
         public void cadastraClienteF(mCliente cmCliente)
@@ -110,7 +156,7 @@ namespace Web_PIM.Acoes
             con.CloseConnection();
         }
 
-
+        //PEGA ULTIMO CADASTRO DO LOGIN
         public void pegaUltimoCadastro(mCliente cmCliente)
         {
             SqlCommand cmd = new SqlCommand(
@@ -131,6 +177,78 @@ namespace Web_PIM.Acoes
             con.CloseConnection();
         }
 
+        //CONSULTA PELO ID
+        public mCliente consultaClientePorId(int id)
+        {
+            mCliente cliente = null;
 
+            SqlCommand cmd = new SqlCommand("EXEC pSelectClienteF_PorID @CodCliente", con.OpenConnection());
+            cmd.Parameters.AddWithValue("@CodCliente", id);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    cliente = new mCliente
+                    {
+                        id = Convert.ToInt32(dr["Codigo"]),
+                        nome = dr["Nome"].ToString(),
+                        email = dr["E-mail"].ToString(),
+                        telefone = dr["Telefone"].ToString(),
+                        documento = dr["CPF"].ToString(), 
+                        endereco = dr["Endereco"].ToString(),
+                    };
+                }
+            }
+
+            SepararEndereco(cliente);
+
+            con.CloseConnection();
+
+            return cliente;
+        }
+
+        //ATUALIZA CLIENTE FISICO
+        public mCliente atualizaClienteF(mCliente cliente)
+        {
+            SqlCommand cmd = new SqlCommand("pAlteraClienteF", con.OpenConnection());
+
+
+            return cliente;
+        }
+
+        //SEPARA ENDERECO
+        public void SepararEndereco(mCliente cliente)
+        {
+            if (string.IsNullOrEmpty(cliente.endereco))
+                throw new ArgumentException("O endereço completo não pode ser vazio ou nulo.");
+            var partes = cliente.endereco.Split(',');
+
+            if (partes.Length < 5)
+                throw new ArgumentException("Formato de endereço inválido.");
+
+            cliente.cep = partes[0].Trim();
+            cliente.logradouro = partes[1].Trim();
+            cliente.bairro = partes[2].Trim();
+            cliente.cidade = partes[3].Trim();
+            cliente.estado = partes[4].Trim();
+
+            if (cliente.logradouro.Contains(" "))
+            {
+                var logradouroPartes = cliente.logradouro.Split(' ');
+                if (int.TryParse(logradouroPartes.Last(), out int numero))
+                {
+                    cliente.numLogradouro = numero;
+                    cliente.logradouro = string.Join(" ", logradouroPartes.Take(logradouroPartes.Length - 1));
+                }
+            }
+
+            if (partes.Length > 5)
+            {
+                cliente.complemento = partes[5].Trim();
+            }
+        }
     }
 }
